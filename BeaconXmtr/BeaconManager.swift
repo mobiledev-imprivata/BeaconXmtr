@@ -15,7 +15,7 @@ class BeaconManager: NSObject {
     private let proximityUUID = NSUUID(UUIDString: "0C9198B6-417B-4A9C-A5C4-2E2717C6E9C1")!
     private let major: CLBeaconMajorValue = 123
     private let minor: CLBeaconMinorValue = 456
-    private let identifier = NSBundle.mainBundle().bundleIdentifier!
+    private let identifier = "com.imprivata.beaconxmtr"
 
     private var beaconRegion: CLBeaconRegion!
     private var peripheralManager: CBPeripheralManager!
