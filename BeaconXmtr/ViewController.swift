@@ -12,11 +12,14 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var beaconSwitch: UISwitch!
     
+    let beaconManager = BeaconManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         beaconSwitch.on = true
+        switchBeacon()
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,6 +31,15 @@ class ViewController: UIViewController {
         let beaconSwitch = sender as! UISwitch
         let msg = "beacon turned " + (beaconSwitch.on ? "on" : "off")
         print(msg)
+        switchBeacon()
+    }
+    
+    private func switchBeacon() {
+        if beaconSwitch.on {
+            beaconManager.startBeacon()
+        } else {
+            beaconManager.stopBeacon()
+        }
     }
 
 }
