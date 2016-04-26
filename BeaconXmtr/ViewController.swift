@@ -18,8 +18,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        beaconSwitch.on = true
-        switchBeacon()
+        beaconSwitch.on = false
+        // switchBeacon()
     }
 
     override func didReceiveMemoryWarning() {
