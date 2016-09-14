@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        beaconSwitch.on = false
+        beaconSwitch.isOn = false
         // switchBeacon()
     }
 
@@ -27,15 +27,15 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func switchChanged(sender: AnyObject) {
+    @IBAction func switchChanged(_ sender: AnyObject) {
         let beaconSwitch = sender as! UISwitch
-        let msg = "beacon turned " + (beaconSwitch.on ? "on" : "off")
+        let msg = "beacon turned " + (beaconSwitch.isOn ? "on" : "off")
         print(msg)
         switchBeacon()
     }
     
-    private func switchBeacon() {
-        if beaconSwitch.on {
+    fileprivate func switchBeacon() {
+        if beaconSwitch.isOn {
             beaconManager.startBeacon()
         } else {
             beaconManager.stopBeacon()

@@ -12,13 +12,13 @@ import CoreLocation
 
 class BeaconManager: NSObject {
     
-    private let proximityUUID = NSUUID(UUIDString: "0C9198B6-417B-4A9C-A5C4-2E2717C6E9C1")!
-    private let major: CLBeaconMajorValue = 123
-    private let minor: CLBeaconMinorValue = 456
-    private let identifier = "com.imprivata.beaconxmtr"
+    fileprivate let proximityUUID = UUID(uuidString: "0C9198B6-417B-4A9C-A5C4-2E2717C6E9C1")!
+    fileprivate let major: CLBeaconMajorValue = 123
+    fileprivate let minor: CLBeaconMinorValue = 456
+    fileprivate let identifier = "com.imprivata.beaconxmtr"
 
-    private var beaconRegion: CLBeaconRegion!
-    private var peripheralManager: CBPeripheralManager!
+    fileprivate var beaconRegion: CLBeaconRegion!
+    fileprivate var peripheralManager: CBPeripheralManager!
     
     func startBeacon() {
         print("startBeacon")
@@ -45,19 +45,19 @@ class BeaconManager: NSObject {
 
 extension BeaconManager: CBPeripheralManagerDelegate {
     
-    func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager) {
+    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         print("peripheralManagerDidUpdateState")
-        if peripheral.state == .PoweredOn {
+        if peripheral.state == .poweredOn {
             print("PoweredOn")
-            let beaconPeripheralData = (beaconRegion.peripheralDataWithMeasuredPower(nil) as NSDictionary) as! [String:AnyObject]
+            let beaconPeripheralData = (beaconRegion.peripheralData(withMeasuredPower: nil) as NSDictionary) as! [String:AnyObject]
             peripheralManager.startAdvertising(beaconPeripheralData)
-        } else if peripheral.state == .PoweredOff {
+        } else if peripheral.state == .poweredOff {
             print("PoweredOff")
             peripheralManager.stopAdvertising()
         }
     }
     
-    func peripheralManagerDidStartAdvertising(peripheral: CBPeripheralManager, error: NSError?) {
+    func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?) {
         var message = "peripheralManagerDidStartAdvertising "
         if error == nil {
             message += "ok"
