@@ -19,6 +19,8 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         beaconSwitch.isOn = false
+        
+        startBeaconCycle()
         // switchBeacon()
     }
 
@@ -33,8 +35,23 @@ class ViewController: UIViewController {
         print(msg)
         switchBeacon()
     }
-    
-    fileprivate func switchBeacon() {
+
+    private func startBeaconCycle() {
+        Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { _ in
+            DispatchQueue.main.async {
+                self.beaconSwitch.isOn = true
+            }
+            self.beaconManager.startBeacon()
+            Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
+                DispatchQueue.main.async {
+                    self.beaconSwitch.isOn = false
+                }
+                self.beaconManager.stopBeacon()
+            }
+        }
+    }
+
+    private func switchBeacon() {
         if beaconSwitch.isOn {
             beaconManager.startBeacon()
         } else {
