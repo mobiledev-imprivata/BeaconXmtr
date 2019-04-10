@@ -18,9 +18,8 @@ class BeaconManager: NSObject {
 //    private let proximityUUID = UUID(uuidString: "785FB9F3-C262-4576-BA79-BEBAD30BB278")!
 //    private let identifier = "com.imprivata.imprivataid.laserbeacon"
     
-    private let proximityUUID = UUID(uuidString: "0C9198B6-417B-4A9C-A5C4-2E2717C6E9C1")!
+    private let proximityUUID = UUID(uuidString: "2CAA4EDD-B1FD-411F-A02B-07393EAA6083")!
     private let identifier = "com.imprivata.beaconxmtr"
-
     
     private let major: CLBeaconMajorValue = 123
     private let minor: CLBeaconMinorValue = 456
