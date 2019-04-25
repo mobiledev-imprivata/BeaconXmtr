@@ -10,52 +10,44 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var beaconSwitch: UISwitch!
-    
+    @IBOutlet weak var beaconStackView: UIStackView!
+
     let beaconManager = BeaconManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        beaconSwitch.isOn = false
-        
-        startBeaconCycle()
-        // switchBeacon()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    @IBAction func switchChanged(_ sender: AnyObject) {
-        let beaconSwitch = sender as! UISwitch
-        let msg = "beacon turned " + (beaconSwitch.isOn ? "on" : "off")
-        print(msg)
-        switchBeacon()
+    
+    
+    @IBAction func beaconClicked(_ sender: UIButton) {
+        let major = sender.tag
+        flashBeacon(major)
     }
-
-    private func startBeaconCycle() {
-        Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { _ in
-            DispatchQueue.main.async {
-                self.beaconSwitch.isOn = true
-            }
-            self.beaconManager.startBeacon()
-            Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
-                DispatchQueue.main.async {
-                    self.beaconSwitch.isOn = false
-                }
-                self.beaconManager.stopBeacon()
+    
+    private func flashBeacon(_ major: Int) {
+        log("flashBeacon \(major) on")
+        for subview in beaconStackView.subviews {
+            if let button = subview as? UIButton {
+                button.isEnabled = false
             }
         }
-    }
-
-    private func switchBeacon() {
-        if beaconSwitch.isOn {
-            beaconManager.startBeacon()
-        } else {
-            beaconManager.stopBeacon()
+        beaconManager.startBeacon(major)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            log("flashBeacon \(major) off")
+            self.beaconManager.stopBeacon()
+            for subview in self.beaconStackView.subviews {
+                if let button = subview as? UIButton {
+                    button.isEnabled = true
+                }
+            }
         }
     }
 

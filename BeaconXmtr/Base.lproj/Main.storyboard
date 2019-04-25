@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,30 +20,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beacon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wlb-5N-QkP">
-                                <rect key="frame" x="97" y="323" width="58" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iK3-d1-Lap">
-                                <rect key="frame" x="163" y="318" width="51" height="31"/>
-                                <connections>
-                                    <action selector="switchChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Tdr-qS-dCd"/>
-                                </connections>
-                            </switch>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="X1I-yY-z31">
+                                <rect key="frame" x="0.0" y="240" width="375" height="187"/>
+                                <subviews>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oPl-nS-XsV">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Beacon 1"/>
+                                        <connections>
+                                            <action selector="beaconClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pIp-Fo-7SW"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccf-Mo-ymM">
+                                        <rect key="frame" x="0.0" y="73" width="375" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Beacon 2"/>
+                                        <connections>
+                                            <action selector="beaconClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eGZ-ao-Jn3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xMM-fP-hJV">
+                                        <rect key="frame" x="0.0" y="146" width="375" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Beacon 3"/>
+                                        <connections>
+                                            <action selector="beaconClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Fo-4Q-4SK"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="iK3-d1-Lap" firstAttribute="leading" secondItem="Wlb-5N-QkP" secondAttribute="trailing" constant="8" id="WiD-AX-pAD"/>
-                            <constraint firstItem="Wlb-5N-QkP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="97" id="YBp-aV-Ree"/>
-                            <constraint firstItem="iK3-d1-Lap" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="fm1-ea-g1o"/>
-                            <constraint firstItem="Wlb-5N-QkP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="mNf-4B-xIs"/>
-                            <constraint firstItem="iK3-d1-Lap" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nQC-oB-1gH"/>
+                            <constraint firstItem="X1I-yY-z31" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="D4c-cI-irM"/>
+                            <constraint firstItem="X1I-yY-z31" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NDH-th-9gx"/>
+                            <constraint firstItem="X1I-yY-z31" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="ahp-Do-z6B"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="beaconSwitch" destination="iK3-d1-Lap" id="e72-UL-MtC"/>
+                        <outlet property="beaconStackView" destination="X1I-yY-z31" id="Ok5-tj-Cee"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
