@@ -25,8 +25,8 @@ class BeaconManager: NSObject {
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
     }
     
-    func startBeacon(_ major: Int) {
-        log("startBeacon \(major)")
+    func startBeacon(_ offset: Int) {
+        log("startBeacon \(offset)")
         guard isPoweredOn else {
             log("not powered on")
             return
@@ -35,7 +35,9 @@ class BeaconManager: NSObject {
             log("already running")
             return
         }
-        let beaconRegion = CLBeaconRegion(proximityUUID: proximityUUID, major: CLBeaconMajorValue(major), identifier: identifier)
+        
+        let uuid = offsetUUID(proximityUUID, by: UInt(offset - 1))
+        let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: "\(identifier)_\(offset)")
         let peripheralData = beaconRegion.peripheralData(withMeasuredPower: nil)
         peripheralManager.startAdvertising(((peripheralData as NSDictionary) as! [String : Any]))
     }
@@ -47,6 +49,16 @@ class BeaconManager: NSObject {
             return
         }
         peripheralManager.stopAdvertising()
+    }
+    
+    private func offsetUUID(_ uuid: UUID, by offset: UInt) -> UUID {
+        let nDigits = 8
+        let lastDigitsString = uuid.uuidString.suffix(nDigits)
+        let lastDigits = UInt(lastDigitsString, radix: 16)!
+        let s = String(format: "%0\(nDigits)X", lastDigits + offset)
+        let offsetUUIDString = uuid.uuidString.dropLast(nDigits) + s
+        log("uuid \(offsetUUIDString)")
+        return UUID(uuidString: String(offsetUUIDString))!
     }
 
 }
